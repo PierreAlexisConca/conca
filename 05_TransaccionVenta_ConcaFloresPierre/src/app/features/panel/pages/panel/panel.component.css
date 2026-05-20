@@ -1,0 +1,52 @@
+// Eliminado: legacy panel
+
+/* GRID CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* TITULO */
+.card h3 {
+  color: #111827;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+/* TEXTO */
+.card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* NÚMEROS */
+.card span {
+  font-size: 34px;
+  font-weight: bold;
+  color: #4f46e5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .topbar h1 {
+    font-size: 28px;
+  }
+
+}

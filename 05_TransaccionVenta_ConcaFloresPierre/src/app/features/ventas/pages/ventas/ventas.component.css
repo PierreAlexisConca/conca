@@ -1,0 +1,73 @@
+/* Estilos básicos para ventas de videojuegos */
+.container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.formulario, .lista {
+  flex: 1 1 350px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px 0 #0001;
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.titulo {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1976d2;
+}
+input, select, button {
+  margin: 0.3rem 0.5rem 0.3rem 0;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 1rem;
+}
+button {
+  background: #1976d2;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #125ea2;
+}
+.producto-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.total {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #388e3c;
+  margin: 1rem 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f8fafc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+th {
+  background: #1976d2;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.7rem;
+}
+td {
+  padding: 0.5rem;
+  background: #fff;
+  text-align: center;
+}
+tr:nth-child(even) td {
+  background: #f1f5f9;
+}
+.table-container {
+  overflow-x: auto;
+}

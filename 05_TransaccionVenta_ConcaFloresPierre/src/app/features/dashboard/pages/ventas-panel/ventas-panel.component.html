@@ -1,0 +1,19 @@
+<div class="panel-container">
+  <div class="topbar">
+    <h1>Panel de Ventas</h1>
+    <p>Resumen de ventas de videojuegos</p>
+    <a routerLink="/" class="home-btn">⬅ Volver al Inicio</a>
+  </div>
+  <div class="cards">
+    <div class="card" *ngFor="let venta of ventas">
+      <h3>{{ venta.cliente }}</h3>
+      <p>Fecha: {{ venta.fecha }}</p>
+      <ul>
+        <li *ngFor="let p of venta.productos">
+          {{ p.videojuego }} (x{{ p.cantidad }}) - {{ p.precio | currency:'USD':'symbol':'1.2-2' }}
+        </li>
+      </ul>
+      <span>Total: {{ getTotalVenta(venta) }}</span>
+    </div>
+  </div>
+</div>

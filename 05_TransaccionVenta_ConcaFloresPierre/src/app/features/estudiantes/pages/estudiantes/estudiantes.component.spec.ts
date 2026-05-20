@@ -1,0 +1,24 @@
+// This file has been removed as part of the cleanup process.
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { EstudiantesComponent } from './estudiantes.component';
+
+describe('EstudiantesComponent', () => {
+  let component: EstudiantesComponent;
+  let fixture: ComponentFixture<EstudiantesComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [EstudiantesComponent]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(EstudiantesComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+.dashboard-layout { display: flex; min-height: 100vh; }
+.sidebar { width: 260px; background: linear-gradient(180deg, #4f46e5, #4338ca); color: white; padding: 30px 20px; }
+.logo { text-align: center; margin-bottom: 40px; }
+.logo h2 { font-size: 28px; font-weight: 800; }
+.sidebar nav { display: flex; flex-direction: column; gap: 12px; }
+.sidebar a { text-decoration: none; color: white; padding: 14px 18px; border-radius: 10px; transition: 0.3s; font-size: 15px; font-weight: 500; }
+.sidebar a.active, .sidebar a:hover { background: white; color: #4f46e5; font-weight: 700; }
+.content { flex: 1; padding: 40px; background: #f8fafc; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+.card { background: white; padding: 25px; border-radius: 18px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); transition: 0.3s; }
+.card:hover { transform: translateY(-5px); }
+.card h3 { font-size: 18px; color: #111827; margin-bottom: 12px; }
+.card span { margin-top: 20px; font-size: 32px; font-weight: bold; color: #4f46e5; display: block; }

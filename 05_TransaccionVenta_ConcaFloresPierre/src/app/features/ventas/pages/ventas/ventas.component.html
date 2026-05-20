@@ -1,0 +1,72 @@
+<h2 class="titulo">Gestión de Ventas de Videojuegos</h2>
+<div class="container">
+  <!-- FORMULARIO -->
+  <div class="formulario">
+    <h3>{{ editando ? 'Editar Venta' : 'Registrar Venta' }}</h3>
+    <form [formGroup]="ventaForm" (ngSubmit)="guardarVenta()">
+      <div *ngIf="paso === 1">
+        <div>
+          <label>Cliente</label>
+          <input type="text" placeholder="Nombre del cliente" formControlName="cliente">
+        </div>
+        <div>
+          <label>Fecha</label>
+          <input type="date" formControlName="fecha">
+        </div>
+        <div>
+          <label>Productos</label>
+          <button type="button" (click)="agregarProducto()">Agregar Videojuego</button>
+        </div>
+        <div *ngFor="let p of productos.controls; let i = index" [formGroupName]="i" class="producto-row">
+          <input type="text" placeholder="Videojuego" formControlName="videojuego">
+          <input type="number" placeholder="Cantidad" formControlName="cantidad" min="1">
+          <input type="number" placeholder="Precio" formControlName="precio" min="0.01" step="0.01">
+          <button type="button" (click)="eliminarProducto(i)">Eliminar</button>
+        </div>
+        <div class="total">
+          Total: {{ getTotal() | currency:'USD':'symbol':'1.2-2' }}
+        </div>
+        <button type="submit" [disabled]="ventaForm.invalid || productos.length === 0">
+          {{ editando ? 'Actualizar' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- LISTADO -->
+  <div class="lista">
+    <h3>Lista de Ventas</h3>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Productos</th>
+            <th>Total</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venta of ventas; let i = index">
+            <td>{{ venta.cliente }}</td>
+            <td>{{ venta.fecha }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let p of venta.productos">
+                  {{ p.videojuego }} (x{{ p.cantidad }}) - {{ p.precio | currency:'USD':'symbol':'1.2-2' }}
+                </li>
+              </ul>
+            </td>
+            <td>
+              {{ getTotalVenta(venta) | currency:'USD':'symbol':'1.2-2' }}
+            </td>
+            <td>
+              <button (click)="editarVenta(venta, i)">Editar</button>
+              <button (click)="eliminarVenta(i)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

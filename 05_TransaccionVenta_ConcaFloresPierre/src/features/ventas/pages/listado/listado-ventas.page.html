@@ -1,0 +1,22 @@
+<h2>Listado de Ventas</h2>
+<input type="text" [(ngModel)]="filtro" placeholder="Buscar por cliente..." />
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Cliente</th>
+			<th>Fecha</th>
+			<th>Total</th>
+			<th>Cantidad de productos</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let v of ventasFiltradas">
+			<td>{{v.id}}</td>
+			<td>{{v.cliente.nombre}}</td>
+			<td>{{v.fecha}}</td>
+			<td>{{v.total}}</td>
+			<td>{{v.productos.length}}</td>
+		</tr>
+	</tbody>
+</table>

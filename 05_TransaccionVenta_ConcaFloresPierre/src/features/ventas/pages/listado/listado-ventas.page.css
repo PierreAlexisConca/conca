@@ -1,0 +1,30 @@
+table {
+	width: 100%;
+	margin-bottom: 1.5rem;
+	border-collapse: collapse;
+	background: #f8fafc;
+	border-radius: 8px;
+	overflow: hidden;
+}
+th {
+	background: #1976d2;
+	color: #fff;
+	font-weight: 700;
+	padding: 0.7rem;
+}
+td {
+	padding: 0.5rem;
+	background: #fff;
+	text-align: center;
+}
+tr:nth-child(even) td {
+	background: #f1f5f9;
+}
+input[type="text"] {
+	margin-bottom: 1rem;
+	padding: 0.4rem 0.7rem;
+	width: 270px;
+	border-radius: 6px;
+	border: 1px solid #bbb;
+	font-size: 1rem;
+}

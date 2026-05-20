@@ -1,0 +1,44 @@
+<h2>Registro de Venta</h2>
+<form [formGroup]="ventaForm" (ngSubmit)="registrarVenta()">
+	<div>
+		<label>Cliente:</label>
+		<select formControlName="cliente">
+			<option [ngValue]="null">Seleccione...</option>
+			<option *ngFor="let c of clientes" [ngValue]="c.id">{{c.nombre}}</option>
+		</select>
+	</div>
+	<div formArrayName="productos">
+		<table>
+			<thead>
+				<tr>
+					<th>Producto</th>
+					<th>Cantidad</th>
+					<th>Precio</th>
+					<th>Subtotal</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let prod of productosForm.controls; let i = index" [formGroupName]="i">
+					<td>
+						<select formControlName="productoId" (change)="actualizarProducto(i)">
+							<option [ngValue]="null">Seleccione...</option>
+							<option *ngFor="let p of productos" [ngValue]="p.id">{{p.nombre}}</option>
+						</select>
+					</td>
+					<td><input type="number" formControlName="cantidad" min="1" (input)="actualizarSubtotal(i)"></td>
+					  <td><input type="number" formControlName="precio" [disabled]="true"></td>
+					  <td><input type="number" formControlName="subtotal" [disabled]="true"></td>
+					<td><button type="button" (click)="eliminarProducto(i)" *ngIf="productosForm.length > 1">Eliminar</button></td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="button" (click)="agregarProducto()">Agregar Producto</button>
+	</div>
+	<div class="total">
+		Total: {{total | currency:'USD':'symbol':'1.2-2'}}
+	</div>
+	<div *ngIf="errorMsg" class="msg-error">{{errorMsg}}</div>
+	<div *ngIf="exitoMsg" class="msg-exito">{{exitoMsg}}</div>
+	<button type="submit">Registrar Venta</button>
+</form>

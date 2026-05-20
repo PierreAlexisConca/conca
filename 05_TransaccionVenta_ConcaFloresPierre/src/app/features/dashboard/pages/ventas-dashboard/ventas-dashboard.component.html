@@ -1,0 +1,37 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>Videojuegos Ventas</h2>
+    </div>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        🏠 Panel
+      </a>
+      <a routerLink="/ventas" routerLinkActive="active">
+        💸 Ventas
+      </a>
+      <a routerLink="/clientes" routerLinkActive="active">
+        👤 Clientes
+      </a>
+      <a routerLink="/productos" routerLinkActive="active">
+        🎮 Productos
+      </a>
+    </nav>
+  </aside>
+  <main class="content">
+    <div class="cards">
+      <div class="card">
+        <h3>Total Ventas</h3>
+        <span>{{ totalVentas }}</span>
+      </div>
+      <div class="card">
+        <h3>Total Clientes</h3>
+        <span>{{ totalClientes }}</span>
+      </div>
+      <div class="card">
+        <h3>Total Productos Vendidos</h3>
+        <span>{{ totalProductos }}</span>
+      </div>
+    </div>
+  </main>
+</div>
