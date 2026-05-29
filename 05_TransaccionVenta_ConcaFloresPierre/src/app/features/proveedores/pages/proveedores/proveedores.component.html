@@ -1,0 +1,157 @@
+<div class="page-wrapper">
+
+  <!-- TOPBAR -->
+  <div class="page-header">
+    <div>
+      <h1>🏢 Gestión de Proveedores</h1>
+      <p>Registra y administra los proveedores del sistema</p>
+    </div>
+    <a routerLink="/dashboard" class="btn-dashboard">📊 Ver Dashboard</a>
+  </div>
+
+  <div class="layout">
+
+    <!-- ===== FORMULARIO ===== -->
+    <div class="form-card">
+      <div class="form-card-header">
+        <h2>{{ editando ? '✏️ Editar Proveedor' : '➕ Nuevo Proveedor' }}</h2>
+      </div>
+
+      <form [formGroup]="proveedorForm" (ngSubmit)="guardar()">
+
+        <!-- Empresa -->
+        <div class="campo">
+          <label for="empresa">Empresa <span class="req">*</span></label>
+          <input
+            id="empresa"
+            type="text"
+            formControlName="empresa"
+            placeholder="Ej: TechSupplies SAC"
+            [class.error-input]="empresa?.invalid && empresa?.touched"
+          />
+          <div class="error-msg" *ngIf="empresa?.touched && empresa?.errors">
+            <span *ngIf="empresa?.errors?.['required']">El nombre de la empresa es obligatorio.</span>
+            <span *ngIf="empresa?.errors?.['minlength']">Debe tener al menos 3 caracteres.</span>
+            <span *ngIf="empresa?.errors?.['soloLetras']">Solo se permiten letras en el nombre de la empresa.</span>
+          </div>
+        </div>
+
+        <!-- Contacto -->
+        <div class="campo">
+          <label for="contacto">Contacto <span class="req">*</span></label>
+          <input
+            id="contacto"
+            type="text"
+            formControlName="contacto"
+            placeholder="Ej: Carlos Mendoza"
+            [class.error-input]="contacto?.invalid && contacto?.touched"
+          />
+          <div class="error-msg" *ngIf="contacto?.touched && contacto?.errors">
+            <span *ngIf="contacto?.errors?.['required']">El nombre del contacto es obligatorio.</span>
+            <span *ngIf="contacto?.errors?.['minlength']">Debe tener al menos 3 caracteres.</span>
+            <span *ngIf="contacto?.errors?.['soloLetras']">Solo se permiten letras en el nombre del contacto.</span>
+          </div>
+        </div>
+
+        <!-- Teléfono — Validación personalizada: 9 dígitos -->
+        <div class="campo">
+          <label for="telefono">
+            Teléfono <span class="req">*</span>
+            <span class="hint">9 dígitos</span>
+          </label>
+          <input
+            id="telefono"
+            type="text"
+            formControlName="telefono"
+            placeholder="Ej: 987654321"
+            maxlength="9"
+            [class.error-input]="telefono?.invalid && telefono?.touched"
+          />
+          <div class="error-msg" *ngIf="telefono?.touched && telefono?.errors">
+            <span *ngIf="telefono?.errors?.['required']">El teléfono es obligatorio.</span>
+            <span *ngIf="telefono?.errors?.['telefonoInvalido']">
+              El teléfono debe tener exactamente 9 dígitos numéricos.
+            </span>
+          </div>
+        </div>
+
+        <!-- Correo — Validación personalizada: correo empresarial -->
+        <div class="campo">
+          <label for="correo">
+            Correo electrónico <span class="req">*</span>
+          </label>
+          <input
+            id="correo"
+            type="email"
+            formControlName="correo"
+            placeholder="Ej: contacto@empresa.com"
+            [class.error-input]="correo?.invalid && correo?.touched"
+          />
+          <div class="error-msg" *ngIf="correo?.touched && correo?.errors">
+            <span *ngIf="correo?.errors?.['required']">El correo es obligatorio.</span>
+            <span *ngIf="correo?.errors?.['correoInvalido']">Ingrese un correo electrónico válido.</span>
+            <span *ngIf="correo?.errors?.['dominioProhibido']">No se permiten correos de dominios temporales.</span>
+            <span *ngIf="correo?.errors?.['correoDuplicado']">Este correo ya fue registrado para otro proveedor.</span>
+          </div>
+        </div>
+
+        <!-- Mensajes -->
+        <div class="msg-exito" *ngIf="mensajeExito">{{ mensajeExito }}</div>
+        <div class="msg-error" *ngIf="mensajeError">{{ mensajeError }}</div>
+
+        <!-- Botones -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            {{ editando ? 'Actualizar' : 'Registrar Proveedor' }}
+          </button>
+          <button type="button" class="btn-secondary" *ngIf="editando" (click)="cancelar()">
+            Cancelar
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ===== LISTADO ===== -->
+    <div class="list-card">
+      <div class="list-card-header">
+        <h2>📋 Lista de Proveedores</h2>
+        <span class="badge-count">{{ proveedores.length }} registrados</span>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Empresa</th>
+              <th>Contacto</th>
+              <th>Teléfono</th>
+              <th>Correo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of proveedores">
+              <td>{{ p.id }}</td>
+              <td><strong>{{ p.empresa }}</strong></td>
+              <td>{{ p.contacto }}</td>
+              <td>{{ p.telefono }}</td>
+              <td>{{ p.correo }}</td>
+              <td class="acciones">
+                <button class="btn-editar" (click)="editar(p)" title="Editar">✏️</button>
+                <button class="btn-eliminar" (click)="eliminar(p.id)" title="Eliminar">🗑️</button>
+              </td>
+            </tr>
+            <tr *ngIf="proveedores.length === 0">
+              <td colspan="6" class="sin-datos">
+                No hay proveedores registrados. ¡Agrega el primero!
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

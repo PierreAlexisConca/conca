@@ -18,9 +18,7 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
 
         this.mostrarLayout =
-          !event.url.includes('/dashboard') &&
-          !event.url.includes('/cursos') &&
-          !event.url.includes('/enrollments');
+          !event.url.includes('/dashboard');
 
       }
 

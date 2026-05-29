@@ -1,2 +1,98 @@
-<app-ventas-dashboard></app-ventas-dashboard>
-<app-ventas-panel></app-ventas-panel>
+<div class="dashboard-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span class="logo-icon">🏢</span>
+      <h2>GestProv</h2>
+      <p>Sistema de Proveedores</p>
+    </div>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <span>📊</span> Dashboard
+      </a>
+      <a routerLink="/proveedores" routerLinkActive="active">
+        <span>🏢</span> Proveedores
+      </a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <span>🏠</span> Inicio
+      </a>
+    </nav>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="content">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div>
+        <h1>Panel de Control</h1>
+        <p>Resumen del sistema de gestión de proveedores</p>
+      </div>
+      <a routerLink="/proveedores" class="btn-nuevo">
+        + Nuevo Proveedor
+      </a>
+    </div>
+
+    <!-- TARJETAS DE ESTADÍSTICAS -->
+    <div class="cards">
+
+      <div class="card card-blue">
+        <div class="card-icon">🏢</div>
+        <div class="card-info">
+          <h3>Total Proveedores</h3>
+          <span class="numero">{{ totalProveedores }}</span>
+        </div>
+      </div>
+
+      <div class="card card-purple">
+        <div class="card-icon">🌐</div>
+        <div class="card-info">
+          <h3>Dominios de Correo</h3>
+          <span class="numero">{{ dominiosUnicos }}</span>
+        </div>
+      </div>
+
+      <div class="card card-green">
+        <div class="card-icon">✅</div>
+        <div class="card-info">
+          <h3>Último Registrado</h3>
+          <span class="ultimo">{{ ultimoRegistro }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TABLA DE PROVEEDORES RECIENTES -->
+    <div class="tabla-section">
+      <h2>Proveedores Recientes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Empresa</th>
+            <th>Contacto</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Fecha Registro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of proveedoresRecientes">
+            <td>{{ p.id }}</td>
+            <td><strong>{{ p.empresa }}</strong></td>
+            <td>{{ p.contacto }}</td>
+            <td>{{ p.telefono }}</td>
+            <td>{{ p.correo }}</td>
+            <td>{{ p.fechaRegistro }}</td>
+          </tr>
+          <tr *ngIf="proveedoresRecientes.length === 0">
+            <td colspan="6" class="sin-datos">No hay proveedores registrados aún.</td>
+          </tr>
+        </tbody>
+      </table>
+      <a routerLink="/proveedores" class="ver-todos">Ver todos los proveedores →</a>
+    </div>
+
+  </main>
+</div>

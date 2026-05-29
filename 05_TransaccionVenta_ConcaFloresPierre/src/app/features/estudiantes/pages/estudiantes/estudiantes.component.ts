@@ -1,2 +1,0 @@
-// Eliminado: legacy estudiantes
-}
